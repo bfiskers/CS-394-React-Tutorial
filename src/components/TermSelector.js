@@ -1,6 +1,6 @@
 import React from "react";
 import TermButton from "./TermButton";
-import { terms } from "./Course";
+import { terms } from "../utilities/times";
 
 const TermSelector = ({term, setTerm}) => (
     <div className="btn-group">

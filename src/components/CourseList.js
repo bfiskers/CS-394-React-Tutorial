@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import Course, {getCourseTerm} from './Course';
+import Course from './Course';
 import TermSelector from './TermSelector';
+import { getCourseTerm } from '../utilities/times';
 
 const CourseList = ({ courses }) => {
     const [term, setTerm] = useState('Fall');
