@@ -2,7 +2,7 @@ import React from 'react';
 import Course from './Course';
 
 const CourseList = ({ courses }) => (
-    <div>
+    <div className="course-list">
     { Object.values(courses).map(course => <Course course={ course } key={course.id}/>) }
     </div>
 );
