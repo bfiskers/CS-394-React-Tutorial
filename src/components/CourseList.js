@@ -1,10 +1,19 @@
-import React from 'react';
-import Course from './Course';
+import React, {useState} from 'react';
+import Course, {getCourseTerm} from './Course';
+import TermSelector from './TermSelector';
 
-const CourseList = ({ courses }) => (
-    <div className="course-list">
-    { Object.values(courses).map(course => <Course course={ course } key={course.id}/>) }
-    </div>
-);
+const CourseList = ({ courses }) => {
+    const [term, setTerm] = useState('Fall');
+    const termCourses = Object.values(courses).filter(course => term === getCourseTerm(course));
+
+    return (
+        <>
+            <TermSelector term={term} setTerm={setTerm}/>
+            <div className="course-list">
+                { termCourses.map(course => <Course key={course.id} course={ course } />) }
+            </div>
+        </>
+    );
+}
 
 export default CourseList;
