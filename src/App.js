@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Banner from './components/Banner';
 import CourseList from './components/CourseList';
+import { addScheduleTimes } from './components/Course';
 import './App.css';
 
 const App = () =>  {
@@ -12,7 +13,7 @@ const App = () =>  {
       const response = await fetch(url);
       if (!response.ok) throw response;
       const json = await response.json();
-      setSchedule(json);
+      setSchedule(addScheduleTimes(json));
     }
     fetchSchedule();
   }, [])
