@@ -1,6 +1,7 @@
 import { hasConflict } from "../utilities/times";
 import { getCourseTerm } from "../utilities/times";
 import { setData } from "../utilities/firebase";
+import { useUserState } from "../utilities/firebase";
 
 const getCourseNumber = course => (
     course.id.slice(1, 4)
@@ -61,10 +62,11 @@ const Course = ({ course, selected, setSelected }) => {
     const style = {
         backgroundColor: isDisabled ? 'lightgrey' : isSelected ? 'lightgreen' : 'white'
     };
+    const [user] = useUserState();
     return (
         <div className="card m-1 p-2" style={style}
             onClick={isDisabled ? null : () => setSelected(toggle(course, selected))}
-            onDoubleClick={() => reschedule(course, getCourseMeetingData(course))}>
+            onDoubleClick={!user ? null : () => reschedule(course, getCourseMeetingData(course))}>
             <div className="card-body">
                 <div className="card-title">{getCourseTerm(course)} CS {getCourseNumber(course)}</div>
                 <div className="card-text">{course.title}</div>
